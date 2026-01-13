@@ -1,163 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For You 🤍</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sneha ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Poppins:wght@300;400&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-    color:#fff;
-    overflow-x:hidden;
+  height:100vh;
+  overflow:hidden;
+  font-family:Georgia, serif;
+  color:white;
 }
 
-.section{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px;
+/* scenes */
+.scene{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  transition:1.5s ease;
+  opacity:0;
+  pointer-events:none;
 }
 
-.hidden{
-    opacity:0;
-    transform:translateY(30px);
-    transition:1.2s ease;
+.show{opacity:1;pointer-events:auto;}
+
+/* backgrounds */
+#scene1{background:#b3002d;}
+#flight{background:linear-gradient(#7a001f,#2b000b);}
+#home{background:#1b1b2f;}
+#letters{background:#0f172a;}
+#proposal{background:#020617;}
+#finale{background:#7f001d;}
+
+/* text */
+h1{font-size:2.2rem;margin-bottom:20px;}
+p{max-width:700px;line-height:1.7;font-size:1.05rem;}
+
+/* bird */
+.bird{font-size:70px;cursor:pointer;animation:flap 2s infinite;}
+@keyframes flap{50%{transform:translateY(-10px);}}
+
+/* arrow */
+.arrow{font-size:32px;animation:bounce 1.5s infinite;}
+@keyframes bounce{50%{transform:translateY(10px);}}
+
+/* flight */
+.fly{font-size:90px;animation:flyAcross 3s forwards;}
+@keyframes flyAcross{
+  from{transform:translateY(40vh) scale(1);}
+  to{transform:translateY(-40vh) scale(0.4);}
 }
 
-.show{
-    opacity:1;
-    transform:translateY(0);
-}
+/* home */
+.house{font-size:90px;}
+.sign{font-size:1.4rem;margin:10px 0;}
+.window{font-size:50px;opacity:0.9;}
 
-h1{
-    font-family:'Playfair Display', serif;
-    font-size:2.2rem;
-    margin-bottom:20px;
+/* letters */
+.letter{
+  background:#f5e6c8;
+  color:#2b1b0e;
+  padding:25px;
+  border-radius:8px;
+  margin:10px;
+  max-width:320px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+  animation:fadeIn 1s forwards;
 }
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;}}
 
-p{
-    font-size:1.05rem;
-    line-height:1.8;
-    max-width:700px;
-    margin:auto;
+/* scroll */
+.scroll{
+  background:#f8f1e7;
+  color:#3b1f0f;
+  padding:30px;
+  border-radius:10px;
+  max-width:600px;
+  animation:drop 1.5s forwards;
 }
+@keyframes drop{from{transform:translateY(-100vh);}to{transform:translateY(0);}}
 
-button{
-    margin-top:30px;
-    padding:14px 34px;
-    border:none;
-    border-radius:30px;
-    background:#ff4d6d;
-    color:#fff;
-    font-size:1rem;
-    cursor:pointer;
-    box-shadow:0 0 25px rgba(255,77,109,0.6);
-    animation:pulse 2s infinite;
+/* ring */
+.ring{font-size:80px;margin-top:20px;animation:glow 2s infinite;}
+@keyframes glow{50%{transform:scale(1.1);}}
+
+/* finale */
+.bigText{font-size:3rem;font-weight:bold;}
+.heart{font-size:120px;animation:pulse 2s infinite;}
+@keyframes pulse{50%{transform:scale(1.1);}}
+
+/* floating */
+.float{
+  position:absolute;
+  bottom:-20px;
+  font-size:18px;
+  animation:floatUp linear forwards;
 }
-
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.06);}
-    100%{transform:scale(1);}
-}
-
-/* floating hearts */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    font-size:18px;
-    animation:floatUp linear forwards;
-    color:#ff6b81;
-    opacity:0.8;
-}
-
 @keyframes floatUp{
-    to{
-        transform:translateY(-110vh);
-        opacity:0;
-    }
+  to{transform:translateY(-120vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="section">
-    <div>
-        <h1>Hey Sneha…</h1>
-        <p>This isn’t a normal link.<br>
-        This is a place where my heart learned how to speak.</p>
-        <button onclick="start()">Tap to begin 🤍</button>
-    </div>
+<!-- SCENE 1 -->
+<div class="scene show" id="scene1">
+  <h1>Click here, your highness</h1>
+  <div class="bird" onclick="startJourney()">🕊️</div>
+  <div class="arrow">⬇️</div>
 </div>
 
-<div class="section hidden reveal">
-    <p>
-        I don’t know when it happened.<br>
-        I don’t know how you quietly entered every corner of my life.<br><br>
-        But one day I realised…<br>
-        my peace started sounding like your name.
-    </p>
+<!-- SCENE 2 -->
+<div class="scene" id="flight">
+  <div class="fly">🕊️</div>
 </div>
 
-<div class="section hidden reveal">
-    <p>
-        Loving you never felt loud.<br>
-        It felt safe. Warm. Certain.<br><br>
-        Like my soul finally stopped searching.
-    </p>
+<!-- SCENE 3 -->
+<div class="scene" id="home">
+  <div class="house">🏠</div>
+  <div class="sign">Sneha’s Home</div>
+  <div class="window">👩‍🦱✨</div>
 </div>
 
-<div class="section hidden reveal">
-    <p>
-        You don’t just make me happy.<br>
-        You make me *whole*.<br><br>
-        In a world that constantly takes,<br>
-        you became my forever.
-    </p>
+<!-- SCENE 4 -->
+<div class="scene" id="letters">
+  <div class="letter" onclick="nextLetter()">My dearest Sneha,<br>You became my calm in a noisy world.</div>
+  <div class="letter" onclick="nextLetter()">Every dream I see now… has you in it.</div>
+  <div class="letter" onclick="nextLetter()">With you, love feels safe, deep, and eternal.</div>
+  <div class="letter" onclick="nextLetter()">I choose you. In every lifetime.</div>
 </div>
 
-<div class="section hidden reveal">
-    <h1>If love had a home…</h1>
-    <p>it would be you.</p>
+<!-- SCENE 5 -->
+<div class="scene" id="proposal">
+  <div class="scroll">
+    <h1>Will you marry me, Miss Sneha?</h1>
+    <div class="ring">💍</div>
+  </div>
+</div>
+
+<!-- SCENE 6 -->
+<div class="scene" id="finale">
+  <div class="bigText">I LOVE YOU</div>
+  <div class="heart">❤️</div>
 </div>
 
 <script>
-function start(){
-    window.scrollTo({top: window.innerHeight, behavior:'smooth'});
+function show(id){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
 }
 
-const reveals = document.querySelectorAll('.reveal');
-window.addEventListener('scroll', ()=>{
-    reveals.forEach(r=>{
-        const top = r.getBoundingClientRect().top;
-        if(top < window.innerHeight - 100){
-            r.classList.add('show');
-        }
-    });
-});
+function startJourney(){
+  show('flight');
+  setTimeout(()=>show('home'),3500);
+  setTimeout(()=>show('letters'),7000);
+}
 
-// hearts generator
+let letterClicks=0;
+function nextLetter(){
+  letterClicks++;
+  if(letterClicks>=4){
+    show('proposal');
+    setTimeout(()=>show('finale'),5000);
+  }
+}
+
+/* floating */
 setInterval(()=>{
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤';
-    heart.style.left = Math.random()*100 + 'vw';
-    heart.style.animationDuration = (4 + Math.random()*3) + 's';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),7000);
+  const el=document.createElement('div');
+  el.className='float';
+  el.innerHTML=Math.random()>0.5?'❤️':'🪶';
+  el.style.left=Math.random()*100+'vw';
+  el.style.animationDuration=(5+Math.random()*4)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),9000);
 },400);
 </script>
 
