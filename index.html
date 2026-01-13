@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For You 🤍</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Poppins:wght@300;400&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+    color:#fff;
+    overflow-x:hidden;
+}
+
+.section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hidden{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1.2s ease;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1{
+    font-family:'Playfair Display', serif;
+    font-size:2.2rem;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:1.05rem;
+    line-height:1.8;
+    max-width:700px;
+    margin:auto;
+}
+
+button{
+    margin-top:30px;
+    padding:14px 34px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:#fff;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(255,77,109,0.6);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.06);}
+    100%{transform:scale(1);}
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:18px;
+    animation:floatUp linear forwards;
+    color:#ff6b81;
+    opacity:0.8;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="section">
+    <div>
+        <h1>Hey Sneha…</h1>
+        <p>This isn’t a normal link.<br>
+        This is a place where my heart learned how to speak.</p>
+        <button onclick="start()">Tap to begin 🤍</button>
+    </div>
+</div>
+
+<div class="section hidden reveal">
+    <p>
+        I don’t know when it happened.<br>
+        I don’t know how you quietly entered every corner of my life.<br><br>
+        But one day I realised…<br>
+        my peace started sounding like your name.
+    </p>
+</div>
+
+<div class="section hidden reveal">
+    <p>
+        Loving you never felt loud.<br>
+        It felt safe. Warm. Certain.<br><br>
+        Like my soul finally stopped searching.
+    </p>
+</div>
+
+<div class="section hidden reveal">
+    <p>
+        You don’t just make me happy.<br>
+        You make me *whole*.<br><br>
+        In a world that constantly takes,<br>
+        you became my forever.
+    </p>
+</div>
+
+<div class="section hidden reveal">
+    <h1>If love had a home…</h1>
+    <p>it would be you.</p>
+</div>
+
+<script>
+function start(){
+    window.scrollTo({top: window.innerHeight, behavior:'smooth'});
+}
+
+const reveals = document.querySelectorAll('.reveal');
+window.addEventListener('scroll', ()=>{
+    reveals.forEach(r=>{
+        const top = r.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            r.classList.add('show');
+        }
+    });
+});
+
+// hearts generator
+setInterval(()=>{
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (4 + Math.random()*3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),7000);
+},400);
+</script>
+
+</body>
+</html>
