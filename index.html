@@ -2,187 +2,195 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Our Forever Team</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Sneha ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  height:100vh;
-  overflow:hidden;
-  font-family:Georgia, serif;
-  color:white;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to top, #2b0a00, #ff9a4d);
+    overflow-x: hidden;
+    text-align: center;
+    color: #fff;
 }
 
-/* scenes */
-.scene{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  text-align:center;
-  transition:1.5s ease;
-  opacity:0;
-  pointer-events:none;
+.screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.show{opacity:1;pointer-events:auto;}
-
-/* backgrounds */
-#scene1{background:#b3002d;}
-#flight{background:linear-gradient(#7a001f,#2b000b);}
-#home{background:#1b1b2f;}
-#letters{background:#0f172a;}
-#proposal{background:#020617;}
-#finale{background:#7f001d;}
-
-/* text */
-h1{font-size:2.2rem;margin-bottom:20px;}
-p{max-width:700px;line-height:1.7;font-size:1.05rem;}
-
-/* bird */
-.bird{font-size:70px;cursor:pointer;animation:flap 2s infinite;}
-@keyframes flap{50%{transform:translateY(-10px);}}
-
-/* arrow */
-.arrow{font-size:32px;animation:bounce 1.5s infinite;}
-@keyframes bounce{50%{transform:translateY(10px);}}
-
-/* flight */
-.fly{font-size:90px;animation:flyAcross 3s forwards;}
-@keyframes flyAcross{
-  from{transform:translateY(40vh) scale(1);}
-  to{transform:translateY(-40vh) scale(0.4);}
+button {
+    margin-top: 20px;
+    padding: 14px 34px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: #ffffff;
+    color: #7b1d00;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-/* home */
-.house{font-size:90px;}
-.sign{font-size:1.4rem;margin:10px 0;}
-.window{font-size:50px;opacity:0.9;}
-
-/* letters */
-.letter{
-  background:#f5e6c8;
-  color:#2b1b0e;
-  padding:25px;
-  border-radius:8px;
-  margin:10px;
-  max-width:320px;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(0,0,0,0.4);
-  animation:fadeIn 1s forwards;
+button:hover {
+    transform: scale(1.05);
 }
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;}}
 
-/* scroll */
-.scroll{
-  background:#f8f1e7;
-  color:#3b1f0f;
-  padding:30px;
-  border-radius:10px;
-  max-width:600px;
-  animation:drop 1.5s forwards;
+.pitch {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: none;
 }
-@keyframes drop{from{transform:translateY(-100vh);}to{transform:translateY(0);}}
 
-/* ring */
-.ring{font-size:80px;margin-top:20px;animation:glow 2s infinite;}
-@keyframes glow{50%{transform:scale(1.1);}}
-
-/* finale */
-.bigText{font-size:3rem;font-weight:bold;}
-.heart{font-size:120px;animation:pulse 2s infinite;}
-@keyframes pulse{50%{transform:scale(1.1);}}
-
-/* floating */
-.float{
-  position:absolute;
-  bottom:-20px;
-  font-size:18px;
-  animation:floatUp linear forwards;
+.ball {
+    position: absolute;
+    bottom: 80px;
+    left: 10%;
+    font-size: 40px;
+    transition: left 4s linear;
 }
-@keyframes floatUp{
-  to{transform:translateY(-120vh);opacity:0;}
+
+.line {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+
+.goal {
+    position: absolute;
+    bottom: 70px;
+    right: 8%;
+    font-size: 50px;
+}
+
+.heart {
+    position: absolute;
+    bottom: 100px;
+    right: 10%;
+    font-size: 20px;
+    animation: rise 3s linear forwards;
+}
+
+@keyframes rise {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-200px); }
+}
+
+.proposal {
+    display: none;
+    padding: 40px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 20px;
+    margin: 30px;
+}
+
+.ring {
+    font-size: 60px;
+    margin-top: 20px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px gold; }
+    to { text-shadow: 0 0 30px gold; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SCENE 1 -->
-<div class="scene show" id="scene1">
-  <h1>Click here, your highness</h1>
-  <div class="bird" onclick="startJourney()">🕊️</div>
-  <div class="arrow">⬇️</div>
+<!-- Opening -->
+<div class="screen" id="start">
+    <h1>For the one who always watched the game with me.</h1>
+    <button onclick="kickOff()">Kick off ⚽</button>
 </div>
 
-<!-- SCENE 2 -->
-<div class="scene" id="flight">
-  <div class="fly">🕊️</div>
+<!-- Pitch -->
+<div class="pitch" id="pitch">
+    <div class="line" id="line"></div>
+    <div class="ball" id="ball">⚽</div>
+    <div class="goal">🥅</div>
 </div>
 
-<!-- SCENE 3 -->
-<div class="scene" id="home">
-  <div class="house">🏠</div>
-  <div class="sign">Sneha’s Home</div>
-  <div class="window">👩‍🦱✨</div>
-</div>
+<!-- Proposal -->
+<div class="proposal" id="proposal">
+    <p>
+        Life will have wins and losses,<br>
+        extra time and tough moments…<br><br>
+        but if you’re on my team,<br>
+        I know I’ll always make it through.
+    </p>
 
-<!-- SCENE 4 -->
-<div class="scene" id="letters">
-  <div class="letter" onclick="nextLetter()">My dearest Sneha,<br>You became my calm in a noisy world.</div>
-  <div class="letter" onclick="nextLetter()">Every dream I see now… has you in it.</div>
-  <div class="letter" onclick="nextLetter()">With you, love feels safe, deep, and eternal.</div>
-  <div class="letter" onclick="nextLetter()">I choose you. In every lifetime.</div>
-</div>
-
-<!-- SCENE 5 -->
-<div class="scene" id="proposal">
-  <div class="scroll">
-    <h1>Will you marry me, Miss Sneha?</h1>
-    <div class="ring">💍</div>
-  </div>
-</div>
-
-<!-- SCENE 6 -->
-<div class="scene" id="finale">
-  <div class="bigText">I LOVE YOU</div>
-  <div class="heart">❤️</div>
+    <h2>Will you marry me and be my forever teammate?</h2>
+    <div class="ring">💍⚽</div>
+    <p style="margin-top:20px;">I love you.</p>
 </div>
 
 <script>
-function show(id){
-  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
+const lines = [
+    "Every match felt better with you beside me.",
+    "Every goal felt louder because you celebrated with me.",
+    "Every loss felt lighter because you stayed."
+];
+
+let index = 0;
+
+function kickOff() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("pitch").style.display = "block";
+
+    const ball = document.getElementById("ball");
+    const line = document.getElementById("line");
+
+    showLine();
+
+    setTimeout(() => {
+        ball.style.left = "80%";
+    }, 500);
+
+    const interval = setInterval(() => {
+        index++;
+        if (index < lines.length) {
+            showLine();
+        } else {
+            clearInterval(interval);
+            goalMoment();
+        }
+    }, 1500);
 }
 
-function startJourney(){
-  show('flight');
-  setTimeout(()=>show('home'),3500);
-  setTimeout(()=>show('letters'),7000);
+function showLine() {
+    const line = document.getElementById("line");
+    line.style.opacity = 0;
+    setTimeout(() => {
+        line.textContent = lines[index];
+        line.style.opacity = 1;
+    }, 600);
 }
 
-let letterClicks=0;
-function nextLetter(){
-  letterClicks++;
-  if(letterClicks>=4){
-    show('proposal');
-    setTimeout(()=>show('finale'),5000);
-  }
-}
+function goalMoment() {
+    for (let i = 0; i < 15; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.right = (8 + Math.random() * 6) + "%";
+        document.getElementById("pitch").appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+    }
 
-/* floating */
-setInterval(()=>{
-  const el=document.createElement('div');
-  el.className='float';
-  el.innerHTML=Math.random()>0.5?'❤️':'🪶';
-  el.style.left=Math.random()*100+'vw';
-  el.style.animationDuration=(5+Math.random()*4)+'s';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),9000);
-},400);
+    setTimeout(() => {
+        document.getElementById("pitch").style.display = "none";
+        document.getElementById("proposal").style.display = "block";
+    }, 2500);
+}
 </script>
 
 </body>
